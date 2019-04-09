@@ -13,7 +13,7 @@ Just some projects I'll try to spend time on every week.
 - HTML/CSS
 
 ### Main Tasks:
--[] Create a web page
--[] Have a timetable embedded on the web page
--[] Have a time embedded on the web page
--[] Implement a todo list on the web page
+- [ ] Create a web page
+- [ ] Have a timetable embedded on the web page
+- [ ] Have a time embedded on the web page
+- [ ] Implement a todo list on the web page
