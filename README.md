@@ -1,9 +1,8 @@
 # Major-Projects
 Just some projects I'll try to spend time on every week.
-## Minor Project: KOL Price Script
-### Price Script
-- You'd need to search for each iotm in the list, and then do a check with an if statement that appends to a list of discounts and return the list?
-- First iteration might just be return a list of a set percentage discount between the two
+## Minor Project: KOL Barf Script
+### Barf Script
+Minor script to automate stuff. In Ash.
 ## Current Project : Creating a Web Page
 ### Goals:
 **Doing this to learn some:**
@@ -21,3 +20,4 @@ Just some projects I'll try to spend time on every week.
 - [ ] Have a timetable embedded on the web page
 - [ ] Have a time embedded on the web page
 - [ ] Implement a todo list on the web page
+- [ ] Probably generate a method to read the recipe file from modded MC
