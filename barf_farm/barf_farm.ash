@@ -85,8 +85,22 @@ void consult_d0rfl()
 
 void main(){
 	// SETTINGS
-	// Find a method for checking if one has a tea tree
-	if (get_property("barf_treeshake") == "")
+	// Find a better method for this
+
+	// Checks to see if has tea tree
+	if (get_property("barf_hastree") == "")
+	{
+		if (user_confirm("Do you have a tea tree?"),)
+		{
+			set_property("barf_hastree", true);
+		}
+		else
+		{
+			set_property("barf_hastree", false);
+		}
+	}
+	// Checks to see if you want to shake tree
+	if ((get_property("barf_treeshake") == "") && (get_property("barf_hastree") == "true")
 	{
 		if (user_confirm("Shake Tree?"))
 		{
@@ -107,7 +121,9 @@ void main(){
 		{
 			print("Shaking Tree!", "blue");
 			cli_execute("teatree shake");
-		else {
+		}
+		else
+		{
 			print("Grabbing a cuppa", "blue");
 			cli_execute("teatree royal");
 		}
