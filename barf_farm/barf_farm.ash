@@ -122,10 +122,24 @@ void main(){
 			print("Shaking Tree!", "blue");
 			cli_execute("teatree shake");
 		}
+		// Picking tea
 		else
 		{
-			print("Grabbing a cuppa", "blue");
-			cli_execute("teatree royal");
+			if (get_property("barf_treeoption") == "voraci")
+			{
+				print("Picking Voraci tea", "blue");
+				cli_execute("teatree voraci");
+			}
+			else if (get_property("barf_treeoption"))
+			{
+				print("Picking Sobrie tea", "blue");
+				cli_execute("teatree sobrie");
+			}
+			else
+			{
+				print("Defaulting to royal tea", "blue");
+				cli_execute("teatree royal");
+			}
 		}
 	}
 
