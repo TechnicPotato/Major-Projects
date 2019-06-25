@@ -2,4 +2,5 @@
 ## Usage Guide:
 - Do bounty hunting and stuffs first
 - Don't use barf mountain ticket, script should handle it
-- Do all your eating beforehand, the script doesn't want to do it for you
+- If eat_food is True, will auto eat.
+- Assumes you have your own custom combat script
