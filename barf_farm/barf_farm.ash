@@ -81,14 +81,38 @@ void consult_d0rfl()
 
 
 void main(){
-	print("Running breakfast commands", "blue");
-    //breakfast
-    if (get_property("_pottedTeaTreeUsed") == "false"){
-		print("Grabbing a cuppa", "blue");
-		cli_execute("teatree royal");
+	// SETTINGS
+	// Find a method for checking if one has a tea tree
+	if (get_property("barf_treeshake") == "")
+	{
+		if (user_confirm("Shake Tree?"))
+		{
+			set_property("barf_treeshake" , true);
+		}
+		else
+		{
+			set_property("barf_treeshake" , false);
+		}
 	}
+
+	//breakfast
+	print("Running breakfast commands", "black");
+
+    if (get_property("_pottedTeaTreeUsed") == "false")
+	{
+		if (get_property("barf_treeshake") == "true")
+		{
+			print("Shaking Tree!", "blue");
+			cli_execute("teatree shake");
+		else {
+			print("Grabbing a cuppa", "blue");
+			cli_execute("teatree royal");
+		}
+	}
+
 	//Performs a check to see if you have horsery and if dark horse already in usage
-    if ((get_property("_horsery") != "dark horse") && (get_property("horseryAvailable") == "true")){
+    if ((get_property("_horsery") != "dark horse") && (get_property("horseryAvailable") == "true"))
+	{
 		print("Getting Horse", "blue");
 		cli_execute("horsery dark");
 	}
