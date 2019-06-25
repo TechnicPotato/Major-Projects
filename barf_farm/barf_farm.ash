@@ -118,7 +118,7 @@ void main(){
 		}
 	}
 
-	//breakfast
+	// BREAKFAST
 	print("Running breakfast commands", "black");
 
     if (get_property("_pottedTeaTreeUsed") == "false")
@@ -149,17 +149,22 @@ void main(){
 		}
 	}
 
-	//Performs a check to see if you have horsery and if dark horse already in usage
+	// Performs a check to see if you have horsery and if dark horse already in usage
     if ((get_property("_horsery") != "dark horse") && (get_property("horseryAvailable") == "true"))
 	{
 		print("Getting Horse", "blue");
 		cli_execute("horsery dark");
 	}
+
+	// Collect the Carpe
+	if (item_amount($item[carpe])) == 0)
+		visit_url("clan_viplounge.php?preaction=buyfloundryitem&whichitem=9001");
+
 	// Implement NEP
 	print("Obtaining stuffs from d0rfl", "blue");
 	consult_d0rfl();
-    //Set boombox to food for initial stuffs.
-    //cli_execute("boombox food");
+    // Set boombox to food for initial stuffs.
+    // cli_execute("boombox food");
 
 //
 }
