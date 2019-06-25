@@ -85,12 +85,17 @@ void consult_d0rfl()
 
 void main(){
 	// SETTINGS
-	// Find a better method for this
+	// DEFAULT: SET TO OBTAIN ROYAL TEA
+	if (get_property("barf_treeoption") == "")
+	{
+		set_property("barf_treeoption", "royal");
+	}
 
+	// Find a better method for this
 	// Checks to see if has tea tree
 	if (get_property("barf_hastree") == "")
 	{
-		if (user_confirm("Do you have a tea tree?"),)
+		if (user_confirm("Do you have a tea tree?"))
 		{
 			set_property("barf_hastree", true);
 		}
@@ -99,8 +104,9 @@ void main(){
 			set_property("barf_hastree", false);
 		}
 	}
+
 	// Checks to see if you want to shake tree
-	if ((get_property("barf_treeshake") == "") && (get_property("barf_hastree") == "true")
+	if ((get_property("barf_treeshake") == "") && (get_property("barf_hastree") == "true"))
 	{
 		if (user_confirm("Shake Tree?"))
 		{
@@ -130,7 +136,7 @@ void main(){
 				print("Picking Voraci tea", "blue");
 				cli_execute("teatree voraci");
 			}
-			else if (get_property("barf_treeoption"))
+			else if (get_property("barf_treeoption") == "sobrie")
 			{
 				print("Picking Sobrie tea", "blue");
 				cli_execute("teatree sobrie");
