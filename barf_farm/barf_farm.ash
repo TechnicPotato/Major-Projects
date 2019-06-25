@@ -61,6 +61,24 @@ void use_bastille_battalion(int desired_stat, int desired_item, int desired_buff
 	run_choice(1); // Lock in your score
 }
 
+void consult_d0rfl()
+{
+	if (!is_online("d0rfl")) {
+		print("d0rfl not online", "red");
+		return;
+	}
+	if (get_property("_clanFortuneConsultUses") == 3) {
+		print("Already consulted", "red");
+		return;
+	}
+	while ((is_online("d0rfl")) && (get_property("_clanFortuneConsultUses") < 3)){
+		cli_execute("fortune d0rfl pizza batman thick");
+		// Adjust delay as needed.
+		waitq(15);
+	}
+
+}
+
 
 void main(){
 	print("Running breakfast commands", "blue");
@@ -68,9 +86,10 @@ void main(){
     cli_execute("teatree royal");
     cli_execute("horsery dark");
 	// Implement NEP
-	print("")
+	print("Obtaining stuffs from d0rfl", "blue");
+	consult_d0rfl();
     //Set boombox to food for initial stuffs.
-    cli_execute("boombox food");
+    //cli_execute("boombox food");
 
 //
 }
