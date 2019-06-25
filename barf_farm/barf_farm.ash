@@ -83,8 +83,15 @@ void consult_d0rfl()
 void main(){
 	print("Running breakfast commands", "blue");
     //breakfast
-    cli_execute("teatree royal");
-    cli_execute("horsery dark");
+    if (get_property("_pottedTeaTreeUsed") == "false"){
+		print("Grabbing a cuppa", "blue");
+		cli_execute("teatree royal");
+	}
+	//Performs a check to see if you have horsery and if dark horse already in usage
+    if ((get_property("_horsery") != "dark horse") && (get_property("horseryAvailable") == "true")){
+		print("Getting Horse", "blue");
+		cli_execute("horsery dark");
+	}
 	// Implement NEP
 	print("Obtaining stuffs from d0rfl", "blue");
 	consult_d0rfl();
