@@ -3,6 +3,10 @@ Just some projects I'll try to spend time on every week.
 ## Minor Project: KOL Barf Script
 ### Barf Script
 Minor script to automate stuff. In Ash.
+Todo:
+- [ ] NEP implementation
+- [ ] Add voting booth implementation
+
 ## Current Project : Creating a Web Page
 ### Goals:
 **Doing this to learn some:**
