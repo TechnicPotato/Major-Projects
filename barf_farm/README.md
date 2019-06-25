@@ -4,3 +4,14 @@
 - Don't use barf mountain ticket, script should handle it
 - If eat_food is True, will auto eat.
 - Assumes you have your own custom combat script
+
+## Settings:
+This will run initially to set, but if you have to change it:
+```javascript
+set <property> = <true/false>
+```
+
+### Setting options:
+- barf_hastree <true/false> is a way of determining if you have a tea tree.
+- barf_treeshake <true/false> determines if you want to shake the tea tree.
+- barf_treeoption <voraci/sobrie/royal> determines which tea you want. This is set automatically to royal, so change settings accordingly. No other teas are implemented because they not profitable :P.
