@@ -4,6 +4,8 @@
 - Don't use barf mountain ticket, script should handle it
 - If eat_food is True, will auto eat.
 - Assumes you have your own custom combat script
+- Assumes you have your own barf outfit, under `outfit barf`
+- Does not do RO for you, create option for this later.
 
 ## Settings:
 This will run initially to set, but if you have to change it:
