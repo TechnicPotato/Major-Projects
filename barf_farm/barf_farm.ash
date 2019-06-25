@@ -63,15 +63,18 @@ void use_bastille_battalion(int desired_stat, int desired_item, int desired_buff
 
 void consult_d0rfl()
 {
-	if (!is_online("d0rfl")) {
+	if (!is_online("d0rfl"))
+	{
 		print("d0rfl not online", "red");
 		return;
 	}
-	if (get_property("_clanFortuneConsultUses") == 3) {
+	if (get_property("_clanFortuneConsultUses") == 3)
+	{
 		print("Already consulted", "red");
 		return;
 	}
-	while ((is_online("d0rfl")) && (get_property("_clanFortuneConsultUses") < 3)){
+	while ((is_online("d0rfl")) && (get_property("_clanFortuneConsultUses") < 3))
+	{
 		cli_execute("fortune d0rfl pizza batman thick");
 		// Adjust delay as needed.
 		waitq(15);
