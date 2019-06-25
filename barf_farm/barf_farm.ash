@@ -82,8 +82,53 @@ void consult_d0rfl()
 
 }
 
+void create_pants()
+{
+	if (item_amount($item[portable pantogram]) == 0)
+	{
+		print("Missing pantogram pants!", "red");
+		return;
+	}
+	print("Summoning thine pants", "blue");
+	if (get_property("_pantogramModifier") != "")
+	{
+		print("Already used today!", "red");
+		return;
+	}
+	if ((item_amount($item[porquoise]) == 0)  && (get_property("barf_purchase") == "false"))
+	{
+		print("No porquoise found!", "red");
+		return;
+	}
+	// Checks if porquoise is below 30k, then attempts to purchase if so.
+	else if ((item_amount($item[porquoise]) == 0) && (get_property("barf_purchase") == "true"))
+	{
+		if (mall_price($item[porquoise]) < 30000)
+		{
+			print("Purchasing porquoise.", "blue");
+			buy(1, $item[porquoise], 30000);
+	}
+	else if (item_amount($item[disassembled clover]) == 0)
+	{
+		print("Why do you not have a clover? Get a clover and rerun.", "red");
+		return;
+	}
+	// At this point assuming everything went well.
+	else
+	{
+		use(1, $item[disassembled clover]);
+		visit_url("inv_use.php?pwd&which=99&whichitem=9573");
+		visit_url("choice.php?whichchoice=1270&pwd&option=1&m=3&e=5&s1=5789%2C1&s2=706%2C1&s3=24%2C1", true, true);
+		if (count($item[pantogram pants]) == 0)
+		{
+			print("Something went wrong!", "red");
+		}
+		return;
+	}
+}
 
-void main(){
+void main()
+{
 	// SETTINGS
 	// DEFAULT: SET TO OBTAIN ROYAL TEA
 	if (get_property("barf_treeoption") == "")
@@ -91,22 +136,13 @@ void main(){
 		set_property("barf_treeoption", "royal");
 	}
 
-	// Find a better method for this
-	// Checks to see if has tea tree
-	if (get_property("barf_hastree") == "")
+	if (get_property("barf_purchase" == ""))
 	{
-		if (user_confirm("Do you have a tea tree?"))
-		{
-			set_property("barf_hastree", true);
-		}
-		else
-		{
-			set_property("barf_hastree", false);
-		}
+		set_property("barf_purchase", false);
 	}
 
 	// Checks to see if you want to shake tree
-	if ((get_property("barf_treeshake") == "") && (get_property("barf_hastree") == "true"))
+	if ((get_property("barf_treeshake") == "") && (get_campground() contains $item[potted tea tree]))
 	{
 		if (user_confirm("Shake Tree?"))
 		{
@@ -121,7 +157,7 @@ void main(){
 	// BREAKFAST
 	print("Running breakfast commands", "black");
 
-    if (get_property("_pottedTeaTreeUsed") == "false")
+    if ((get_property("_pottedTeaTreeUsed") == "false") && (get_campground() contains $item[potted tea tree]))
 	{
 		if (get_property("barf_treeshake") == "true")
 		{
@@ -159,6 +195,9 @@ void main(){
 	// Collect the Carpe
 	if (item_amount($item[carpe])) == 0)
 		visit_url("clan_viplounge.php?preaction=buyfloundryitem&whichitem=9001");
+
+	// Summoning thine pants
+	create_pants();
 
 	// Implement NEP
 	print("Obtaining stuffs from d0rfl", "blue");

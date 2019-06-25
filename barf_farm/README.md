@@ -14,7 +14,6 @@ set <property> = <true/false>
 ```
 
 ### Setting options:
-- `barf_hastree <true/false>` is a way of determining if you have a tea tree.
 - `barf_treeshake <true/false>` determines if you want to shake the tea tree.
 - `barf_treeoption <voraci/sobrie/royal>` determines which tea you want. This is set automatically to royal, so change settings accordingly. No other teas are implemented because they not profitable :P.
 - `barf_purchase` will automatically purchase items for you if enables. Currently for pantogram only.
