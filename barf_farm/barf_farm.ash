@@ -107,6 +107,20 @@ void create_pants()
 		{
 			print("Purchasing porquoise.", "blue");
 			buy(1, $item[porquoise], 30000);
+			use(1, $item[disassembled clover]);
+			visit_url("inv_use.php?pwd&which=99&whichitem=9573");
+			visit_url("choice.php?whichchoice=1270&pwd&option=1&m=3&e=5&s1=5789%2C1&s2=706%2C1&s3=24%2C1", true, true);
+			if (item_amount($item[pantogram pants]) == 0)
+			{
+				print("Something went wrong!", "red");
+				// Forcably convert all ten-leaf clovers to disassembled.
+				while (item_amount($item[ten-leaf clover]) != 0)
+				{
+					use(1, $item[ten-leaf clover]);
+				}
+			}
+			return;
+		}
 	}
 	else if (item_amount($item[disassembled clover]) == 0)
 	{
@@ -119,9 +133,14 @@ void create_pants()
 		use(1, $item[disassembled clover]);
 		visit_url("inv_use.php?pwd&which=99&whichitem=9573");
 		visit_url("choice.php?whichchoice=1270&pwd&option=1&m=3&e=5&s1=5789%2C1&s2=706%2C1&s3=24%2C1", true, true);
-		if (count($item[pantogram pants]) == 0)
+		if (item_amount($item[pantogram pants]) == 0)
 		{
 			print("Something went wrong!", "red");
+			// Forcably convert all ten-leaf clovers to disassembled.
+			while (item_amount($item[ten-leaf clover]) != 0)
+			{
+				use(1, $item[ten-leaf clover]);
+			}
 		}
 		return;
 	}
@@ -136,7 +155,7 @@ void main()
 		set_property("barf_treeoption", "royal");
 	}
 
-	if (get_property("barf_purchase" == ""))
+	if (get_property("barf_purchase") == "")
 	{
 		set_property("barf_purchase", false);
 	}
@@ -193,9 +212,10 @@ void main()
 	}
 
 	// Collect the Carpe
-	if (item_amount($item[carpe])) == 0)
+	if (item_amount($item[carpe]) == 0)
+	{
 		visit_url("clan_viplounge.php?preaction=buyfloundryitem&whichitem=9001");
-
+	}
 	// Summoning thine pants
 	create_pants();
 
