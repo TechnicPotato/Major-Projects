@@ -148,18 +148,20 @@ void create_pants()
 
 void main()
 {
+	int start_meat = my_meat();
 	// SETTINGS
 	// DEFAULT: SET TO OBTAIN ROYAL TEA
 	if (get_property("barf_treeoption") == "")
 	{
 		set_property("barf_treeoption", "royal");
 	}
-
+	// DEFAULT: SET TO NON PURCHASE
 	if (get_property("barf_purchase") == "")
 	{
 		set_property("barf_purchase", false);
 	}
 
+	// CHECK FUNCTIONS FOR PERSONAL SETTING
 	// Checks to see if you want to shake tree
 	if ((get_property("barf_treeshake") == "") && (get_campground() contains $item[potted tea tree]))
 	{
@@ -172,8 +174,22 @@ void main()
 			set_property("barf_treeshake" , false);
 		}
 	}
+	// Auto eat preferences
+	if (get_property("barf_consume") == "")
+	{
+		if (user_confirm("Automatically consume a hobo diet?"))
+		{
+			set_property("barf_consume", true);
+		}
+		else
+		{
+			set_property("barf_consume", false);
+		}
+	}
 
 	// BREAKFAST
+	// Store initial meat count
+
 	print("Running breakfast commands", "black");
 
     if ((get_property("_pottedTeaTreeUsed") == "false") && (get_campground() contains $item[potted tea tree]))
@@ -222,8 +238,13 @@ void main()
 	// Implement NEP
 	print("Obtaining stuffs from d0rfl", "blue");
 	consult_d0rfl();
-    // Set boombox to food for initial stuffs.
+    // Set boombox to food for initial stuffs.a
     // cli_execute("boombox food");
+	print("Final Counts", "blue");
+	print("Starting meat: " + start_meat);
+	print("End meat: " + my_meat());
+	int difference = start_meat - my_meat();
+	print("Total Meat Gain: " + difference, "red");
 
 //
 }
