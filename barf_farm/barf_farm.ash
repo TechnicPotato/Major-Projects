@@ -146,6 +146,23 @@ void create_pants()
 	}
 }
 
+void fork_slider(int consume_amount)
+{
+	int iterations  = 0;
+	while (iterations < consume_amount)
+	{
+		float hp_percentage = my_hp()/my_maxhp();
+		if (hp_percentage < .60)
+		{
+			restore_hp(my_maxhp());
+		}
+		eat(1, $item[Ol' Scratch's salad fork]);
+		eat(1, $item[extra-greasy slider]);
+		// Self incrementing loop
+		iterations = iterations + 1;
+		}
+}
+
 void main()
 {
 	int start_meat = my_meat();
@@ -240,6 +257,43 @@ void main()
 	consult_d0rfl();
     // Set boombox to food for initial stuffs.a
     // cli_execute("boombox food");
+
+	// DIET
+	if (get_property("barf_consume") == "true")
+	{
+		print("Consuming diet!", "red");
+		// Just so you don't synthesize your UMSBs
+		int UMSB_count = item_amount($item[Ultra Mega Sour Ball]);
+		if (UMSB_count > 0)
+		{
+			put_closet(UMSB_count, $item[Ultra Mega Sour Ball]);
+		}
+		// Synthesize 20 times.
+		cli_execute("synthesize meat");
+		cli_execute("repeat 14");
+		// Get ready for forking!
+		print("Switching outfits for forking", "blue");
+		cli_execute("maximize hot res");
+
+		// Fork and sliders. Check to see if can use got milk first.
+		// CLI attempt to make a milk of magnesium
+		cli_execute("make milk of magnesium");
+		if ((item_amount($item[milk of magnesium] < 1) && (get_property("barf_purchase") == "true"))
+		{
+			buy(1, $item[milk of magnesium], 1000);
+		}
+		if (item_amount($item[milk of magnesium]) < 1)
+		{
+			print("Something went wrong with getting a milk of mag", "red");
+			abort("Please either enable autopurchase, or just get a milk of mag");
+		}
+		use(1, $item[milk of magnesium]);
+		fork_slider(3);
+
+		// Attempt to use mugs
+
+
+	}
 	print("Final Counts", "blue");
 	print("Starting meat: " + start_meat);
 	print("End meat: " + my_meat());
