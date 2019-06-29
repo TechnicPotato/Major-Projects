@@ -7,21 +7,7 @@ Todo:
 - [ ] NEP implementation
 - [ ] Add voting booth implementation
 
-## Current Project : Creating a Web Page
-### Goals:
-**Doing this to learn some:**
-- Front End Web Development
-- Back End Server Management
-
-### Languages:
-- React JS
-- Possible MySQL
-- Bottle for backend, potentially
-- HTML/CSS
-
-### Main Tasks:
-- [ ] Create a web page
-- [ ] Have a timetable embedded on the web page
-- [ ] Have a time embedded on the web page
-- [ ] Implement a todo list on the web page
-- [ ] Probably generate a method to read the recipe file from modded MC
+## Current Project : Android App for Fitness
+### Learn App Dev / Java
+Minor fitness app to track hold of 5/3/1 Beginner routine
+Should do a 3 week cycle and have ability to add weight.
