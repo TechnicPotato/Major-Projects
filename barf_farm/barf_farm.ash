@@ -262,7 +262,7 @@ void main()
 	visit_url('shop.php?whichshop=hippy');
 
 	// Assumes you have Ezandora's FarFuture
-	if (item_amount($item[Time-spinner] == 1){
+	if (item_amount($item[Time-spinner]) == 1){
 		cli_execute("farfuture tea");
 	}
 
@@ -286,7 +286,7 @@ void main()
 		// Fork and sliders. Check to see if can use got milk first.
 		// CLI attempt to make a milk of magnesium
 		cli_execute("make milk of magnesium");
-		if ((item_amount($item[milk of magnesium] < 1) && (get_property("barf_purchase") == "true"))
+		if ((item_amount($item[milk of magnesium]) < 1) && (get_property("barf_purchase") == "true"))
 		{
 			buy(1, $item[milk of magnesium], 1000);
 		}
@@ -305,7 +305,7 @@ void main()
 	print("Final Counts", "blue");
 	print("Starting meat: " + start_meat);
 	print("End meat: " + my_meat());
-	int difference = start_meat - my_meat();
+	int difference = my_meat()- start_meat;
 	print("Total Meat Gain: " + difference, "red");
 
 //
