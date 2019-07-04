@@ -7,6 +7,7 @@
 - Does not do RO for you, create option for this later.
 - Assumes you are using pantogram setup of <porquoise, ten-leaf clover, moxie, stench and bubblin' crude for MP regen>. If you are not, simply adjust the script to do so by editing the ash file. Also assumes you already have the items listed, otherwise enable `set barf_purchase = true`, which will enable a purchase of a porquoise. Up to you to get the rest, since I assume you already have a disassembled clover. Also assumes clover comes pre-disassembled.
 - Assumes you have Ezandora's wonderful briefcase script if you have the briefcase
+- Assumes you have Ezandora's FarFuture script if you have the time-spinner
 
 ## Settings:
 This will run initially to set, but if you have to change it:

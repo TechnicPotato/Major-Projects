@@ -247,6 +247,7 @@ void main()
 	// Collect the Carpe
 	if (item_amount($item[carpe]) == 0)
 	{
+		print("Obtaining Carpe", "blue");
 		visit_url("clan_viplounge.php?preaction=buyfloundryitem&whichitem=9001");
 	}
 	// Summoning thine pants
@@ -255,8 +256,15 @@ void main()
 	// Implement NEP
 	print("Obtaining stuffs from d0rfl", "blue");
 	consult_d0rfl();
-    // Set boombox to food for initial stuffs.a
+    // Set boombox to food for initial stuffs.
     // cli_execute("boombox food");
+
+	visit_url('shop.php?whichshop=hippy');
+
+	// Assumes you have Ezandora's FarFuture
+	if (item_amount($item[Time-spinner] == 1){
+		cli_execute("farfuture tea");
+	}
 
 	// DIET
 	if (get_property("barf_consume") == "true")
