@@ -163,6 +163,49 @@ void fork_slider(int consume_amount)
 		}
 }
 
+void mug_juice(int consume_amount)
+{
+	int iterations = 0;
+	while (iterations < consume_amount)
+	{
+		float hp_percentage = my_hp()/my_maxhp();
+		if (hp_percentage < .60)
+		{
+			restore_hp(my_maxhp());
+		}
+		eat(1m $item[Frosty's frosty mug]);
+		eat(1, $item[jar of fermented pickle juice]);
+		iterations = iterations + 1;
+	}
+}
+
+void raid_stash()
+{
+	// Under most situations, don't enable.
+	if ((get_property("barf_raidstash") == "true") && (get_clan_name() == "Redemption City")
+	{
+		print("Grabbing buffers from the Clan Stash", "red");
+		refresh_stash();
+		item PYEC = $item[Platinum Yendorian Express Card];
+		item Defective = $item[Defective Game Grid Token];
+		if (stash_amount(Defective) > 0)
+		{
+			take_stash(1, Defective);
+			use(1, Defective);
+			put_stash(1, Defective);
+		}
+		if (stash_amount(PYEC) > 0)
+		{
+			take_stash(1, PYEC);
+			use(1, PYEC);
+			put_stash(1, PYEC);
+		}
+	}
+	else
+	{
+		print("Ignoring clan stash items", "blue");
+	}
+}
 void main()
 {
 	int start_meat = my_meat();
@@ -176,6 +219,12 @@ void main()
 	if (get_property("barf_purchase") == "")
 	{
 		set_property("barf_purchase", false);
+	}
+
+	// DEFAULT: SET TO NOT GRAB STUFFS FROM STASH
+	if (get_property("barf_raidstash") == "")
+	{
+		set_property("barf_raidstash", "false");
 	}
 
 	// CHECK FUNCTIONS FOR PERSONAL SETTING
@@ -259,7 +308,8 @@ void main()
     // Set boombox to food for initial stuffs.
     // cli_execute("boombox food");
 
-	visit_url('shop.php?whichshop=hippy');
+	// Reactivate if breakfast isn't being run for some reason
+	// visit_url('shop.php?whichshop=hippy');
 
 	// Assumes you have Ezandora's FarFuture
 	if (item_amount($item[Time-spinner]) == 1){
@@ -302,6 +352,11 @@ void main()
 
 
 	}
+
+	// END OF BUFFS
+	// Autoyanking stuff from the clan stash,
+	raid_stash();
+
 	print("Final Counts", "blue");
 	print("Starting meat: " + start_meat);
 	print("End meat: " + my_meat());

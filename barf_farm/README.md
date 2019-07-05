@@ -20,3 +20,4 @@ set <property> = <true/false>
 - `barf_treeoption <voraci/sobrie/royal>` determines which tea you want. This is set automatically to royal, so change settings accordingly. No other teas are implemented because they not profitable :P.
 - `barf_purchase <true/false>` will automatically purchase items for you if enables. Currently for pantogram only.
 - If `barf_consume <true/false>` will decide whether to consume a barf diet. Defaults to hobo diet. Assumes you have the required foods.
+- If `barf_raidstash <true/false>` will automatically grab certain items from the clan stash in order to buff.
