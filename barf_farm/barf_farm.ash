@@ -357,6 +357,24 @@ void main()
 	// Autoyanking stuff from the clan stash,
 	raid_stash();
 
+	// GEAR Obtaining
+	print("Grabbing an amulet coin", "blue");
+	if (item_amount($item[Amulet Coin]) == 0){
+		use_familiar($familiar[Cornbeefadon]);
+		if ((item_amount($item[box of Familiar Jacks]) == 0) && (get_property("barf_purchase")) == "true")
+		{
+			print("Attempting to purchase some Familiar Jacks", "red");
+			if (buy(1, $item[box of Familiar Jacks], 9000) == 0){
+				print("Failed to buy, too expensive!", "red");
+			}
+			use(1, $item[box of Familiar Jacks]);
+			if (item_amount($item[Amulet Coin]) == 0)
+			{
+				abort("Uh oh, something went wrong somewhere");
+			}
+		}
+	}
+
 	print("Final Counts", "blue");
 	print("Starting meat: " + start_meat);
 	print("End meat: " + my_meat());
