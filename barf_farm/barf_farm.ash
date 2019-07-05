@@ -352,6 +352,12 @@ void main()
 
 
 	}
+	// Grabbing Candy
+	if (get_property("gingerbreadCityAvailable") == "true")
+	{
+		print("Grabbing Candy from Gingerbread City", "blue");
+		// Do something
+	}
 
 	// END OF BUFFS
 	// Autoyanking stuff from the clan stash,
