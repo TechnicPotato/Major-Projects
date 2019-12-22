@@ -1,6 +1,6 @@
 # Major-Projects
 Just some projects I'll try to spend time on every week.
-## Minor Project: KOL Barf Script
+## Minor Project: KOL Barf Script (Incomplete, likely to never be finished).
 ### Barf Script
 Minor script to automate stuff. In Ash.
 Todo:
