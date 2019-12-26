@@ -14,6 +14,7 @@ def write_data(data):
     with open("basic_db\\basic_db.yaml", "w") as f:
         yaml.dump(data, f, sort_keys=True)
 
+
 def user_input(data):
     """ Takes user input and adds to YAML file"""
     print("Inputting new entry.")
