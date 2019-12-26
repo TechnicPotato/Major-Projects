@@ -38,7 +38,6 @@ def user_input(data):
     return data
 
 if __name__ == "__main__":
-<<<<<<< HEAD
     data = load_data()
     # Create an empty dict in case there is no yaml_data
     if data == None:
@@ -49,15 +48,10 @@ if __name__ == "__main__":
     while conditional:
         command = input("> ")
         if (command == "HELP"):
-            print("HELP\nINPUT\t-\tInput new database entry\nQUIT\t-\tLeave program\n")
+            print("INPUT\t-\tInput new database entry\nHELP\t-\tDisplay this help page\nQUIT\t-\tLeave program\n")
         elif (command == "INPUT"):
             user_input(data)
         elif (command == "QUIT"):
             print("Saving Data\n")
             write_data(data)
             conditional = False
-=======
-    # Create an empty dict in case there is no yaml_data
-    data = dict()
-    
->>>>>>> b7fa4e81e2e62e3f361150ec89cf2582ead2aa3a
