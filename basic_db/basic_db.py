@@ -37,6 +37,24 @@ def user_input(data):
     data.update(current_data)
     return data
 
+def search_db(data, command):
+    target = input("Input query target:\n")
+    if (command == "NAME"):
+        try:
+            found_data = data[target]
+            print("Name:\t{name}".format(name=target))
+            print_yaml(found_data)
+        except KeyError:
+            print("Cannot find appropriate name")
+            return
+
+def print_yaml(yaml):
+    """ Prints a single YAML formatted dict. Remeber to print name first as the name is lost before entering."""
+    print("Author:\t{author}".format(author=yaml['author']))
+    print("Year:\t{year}".format(years=yaml['year']))
+    print("Tags:\t{tags}".format(tags=yaml['tags']))
+    print("Text:\n{text}".format(text=yaml['text']))
+
 if __name__ == "__main__":
     data = load_data()
     # Create an empty dict in case there is no yaml_data
@@ -44,14 +62,19 @@ if __name__ == "__main__":
         data = dict()
     
     conditional = True
+    valid_search = ["AUTHOR", "NAME", "TAGS", "YEAR"]
     # Main loop
     while conditional:
-        command = input("> ")
+        command = input("> ").upper()
         if (command == "HELP"):
-            print("INPUT\t-\tInput new database entry\nHELP\t-\tDisplay this help page\nQUIT\t-\tLeave program\n")
+            print("INPUT\t-\tInput new database entry\nHELP\t-\tDisplay this help page\nQUIT\t-\tLeave program\nSEARCH\t-\tPerform a query on the database")
         elif (command == "INPUT"):
             user_input(data)
         elif (command == "QUIT"):
             print("Saving Data\n")
             write_data(data)
             conditional = False
+        elif (command == "SEARCH"):
+            search = input("").upper()
+        else:
+            print("Invalid command.")
