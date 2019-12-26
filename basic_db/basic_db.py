@@ -48,6 +48,16 @@ def search_db(data, command):
             print("Cannot find appropriate name")
             return
 
+    elif (command == "AUTHOR"):
+        try:
+            for i in data:
+                if target == data[i]['author']:
+                    print("Name:\t{name}".format(name=target))
+                    print_yaml(data[i])
+        except KeyError:
+            print("Cannot find appropriate name")
+            return
+
 def print_yaml(yaml):
     """ Prints a single YAML formatted dict. Remeber to print name first as the name is lost before entering."""
     print("Author:\t{author}".format(author=yaml['author']))
@@ -75,7 +85,7 @@ if __name__ == "__main__":
             write_data(data)
             conditional = False
         elif (command == "SEARCH"):
-            search = input("").upper()
+            search = input("Input query field:\n").upper()
             if search not in valid_search:
                 print("Invalid search conditions.")
             else:
