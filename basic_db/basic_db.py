@@ -20,7 +20,7 @@ def user_input(data):
     print("Inputting new entry.")
     name = input("Input name:\t")
     author = input("Input author:\t")
-    year = input("Input year:\t")
+    year = input("Input year:\t") # Force an int check here later.
     tags = input("Input tags, seperated by commas:\n").split(",")
     text = input("Input text:\n")
     current_data = dict(
@@ -54,6 +54,38 @@ def search_db(data, command):
                 if target == data[i]['author']:
                     print("Name:\t{name}".format(name=target))
                     print_yaml(data[i])
+                    return
+            else:
+                print("Could not find appropriate name")
+        
+        except KeyError:
+            print("Cannot find appropriate name")
+            return
+
+    elif (command == "YEAR"):
+        try:
+            for i in data:
+                if target == data[i]['year']:
+                    print("Name:\t{name}".format(name=target))
+                    print_yaml(data[i])
+                    return
+            else:
+                print("Could not find appropriate name")
+        
+        except KeyError:
+            print("Cannot find appropriate name")
+            return
+    
+    else: # Searching within tags
+        try:
+            for i in data:
+                if target in data[i]['tags']:
+                    print("Name:\t{name}".format(name=target))
+                    print_yaml(data[i])
+                    return
+            else:
+                print("Could not find appropriate name")
+        
         except KeyError:
             print("Cannot find appropriate name")
             return
