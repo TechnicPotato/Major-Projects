@@ -20,3 +20,12 @@ Should have:
 - [ ] Be capable of shifting between dates if needed. Ideally with a date entered
 - [ ] Be capable of displaying the current class and next class.\
 - [ ] Minimalistic UI.
+
+## Concept: YAML Database
+### Basic Databasing tools
+Script capable on inputting into a database and retrieving.
+Should have:
+- [ ] Basic Input with fields
+- [ ] Basic Query
+- [ ] Deletion
+- [ ] Capable of Unicode Parsing.
