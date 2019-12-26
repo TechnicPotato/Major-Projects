@@ -51,7 +51,7 @@ def search_db(data, command):
 def print_yaml(yaml):
     """ Prints a single YAML formatted dict. Remeber to print name first as the name is lost before entering."""
     print("Author:\t{author}".format(author=yaml['author']))
-    print("Year:\t{year}".format(years=yaml['year']))
+    print("Year:\t{year}".format(year=yaml['year']))
     print("Tags:\t{tags}".format(tags=yaml['tags']))
     print("Text:\n{text}".format(text=yaml['text']))
 
@@ -76,5 +76,9 @@ if __name__ == "__main__":
             conditional = False
         elif (command == "SEARCH"):
             search = input("").upper()
+            if search not in valid_search:
+                print("Invalid search conditions.")
+            else:
+                search_db(data, search)
         else:
             print("Invalid command.")
