@@ -113,12 +113,16 @@ if __name__ == "__main__":
     valid_search = ["AUTHOR", "NAME", "TAGS", "YEAR"]
     # Main loop
     while conditional:
-        command = input("> ").upper()
+        command = input(">>> ").upper()
         if (command == "HELP"):
-            print("INPUT\t-\tInput new database entry")
+            print("DEL or DELETE\t-\tErase an entry")
             print("HELP\t-\tDisplay this help page")
+            print("INPUT\t-\tInput new database entry")
             print("QUIT\t-\tLeave program")
             print("SEARCH\t-\tPerform a query on the database")
+        elif (command == "DEL" or command == "DELETE"):
+            to_delete = input("Input name to be deleted:\n>>> ")
+            data.pop()
         elif (command == "INPUT"):
             user_input(data)
         elif (command == "QUIT"):
@@ -126,7 +130,7 @@ if __name__ == "__main__":
             write_data(data)
             conditional = False
         elif (command == "SEARCH"):
-            search = input("Input query field:\n").upper()
+            search = input("Input query field:\n>>> ").upper()
             if search not in valid_search:
                 print("Invalid search conditions.")
             else:
