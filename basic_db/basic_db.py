@@ -124,7 +124,11 @@ if __name__ == "__main__":
             print("SEARCH\t-\tPerform a query on the database")
         elif (command == "DEL" or command == "DELETE"):
             to_delete = input("Input name to be deleted:\n>>> ")
-            data.pop()
+            try:
+                data.pop(to_delete)
+                print("Successfully removed {name} from the database.".format(name=to_delete))
+            except KeyError:
+                print("Name does not exist in the database.")
         elif (command == "INPUT"):
             user_input(data)
         elif (command == "QUIT"):
