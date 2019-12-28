@@ -22,7 +22,13 @@ def user_input(data):
     author = input("Input author:\t")
     year = input("Input year:\t") # Force an int check here later.
     tags = input("Input tags, seperated by commas:\n").split(",")
-    text = input("Input text:\n")
+    # Add line input
+    input_line = input("Input text:\n> ")
+    text = input_line
+    while input_line != "": # Keep checking until nothing is entered
+        input_line = input("> ")
+        text += (input_line + "\n")
+    
     current_data = dict(
         name = dict(
             author = author,
