@@ -61,7 +61,6 @@ def search_db(data, command):
                 if target == data[i]['author']:
                     print("Name:\t{name}".format(name=target))
                     print_yaml(data[i])
-                    return
             else:
                 print("Could not find appropriate name")
         
@@ -75,7 +74,6 @@ def search_db(data, command):
                 if target == data[i]['year']:
                     print("Name:\t{name}".format(name=target))
                     print_yaml(data[i])
-                    return
             else:
                 print("Could not find appropriate name")
         
@@ -89,7 +87,6 @@ def search_db(data, command):
                 if target in data[i]['tags']:
                     print("Name:\t{name}".format(name=target))
                     print_yaml(data[i])
-                    return
             else:
                 print("Could not find appropriate name")
         
