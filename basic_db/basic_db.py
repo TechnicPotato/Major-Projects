@@ -46,6 +46,7 @@ def user_input(data):
 
 def search_db(data, command):
     target = input("Input query target:\n")
+    found = False
     if (command == "NAME"):
         try:
             found_data = data[target]
@@ -61,7 +62,8 @@ def search_db(data, command):
                 if target == data[i]['author']:
                     print("Name:\t{name}".format(name=target))
                     print_yaml(data[i])
-            else:
+                    found = True
+            if found == False:
                 print("Could not find appropriate name")
         
         except KeyError:
@@ -74,7 +76,8 @@ def search_db(data, command):
                 if target == data[i]['year']:
                     print("Name:\t{name}".format(name=target))
                     print_yaml(data[i])
-            else:
+                    found = True
+            if found == False:
                 print("Could not find appropriate name")
         
         except KeyError:
@@ -87,7 +90,8 @@ def search_db(data, command):
                 if target in data[i]['tags']:
                     print("Name:\t{name}".format(name=target))
                     print_yaml(data[i])
-            else:
+                    found = True
+            if found == False:
                 print("Could not find appropriate name")
         
         except KeyError:
