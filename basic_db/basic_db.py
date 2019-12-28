@@ -41,6 +41,7 @@ def user_input(data):
     current_data[str(name)] = current_data['name']
     del current_data['name']
     data.update(current_data)
+    print("Successfully added entry.")
     return data
 
 def search_db(data, command):
