@@ -115,7 +115,10 @@ if __name__ == "__main__":
     while conditional:
         command = input("> ").upper()
         if (command == "HELP"):
-            print("INPUT\t-\tInput new database entry\nHELP\t-\tDisplay this help page\nQUIT\t-\tLeave program\nSEARCH\t-\tPerform a query on the database")
+            print("INPUT\t-\tInput new database entry")
+            print("HELP\t-\tDisplay this help page")
+            print("QUIT\t-\tLeave program")
+            print("SEARCH\t-\tPerform a query on the database")
         elif (command == "INPUT"):
             user_input(data)
         elif (command == "QUIT"):
