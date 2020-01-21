@@ -21,11 +21,12 @@ Should have:
 - [ ] Be capable of displaying the current class and next class.\
 - [ ] Minimalistic UI.
 
-## Concept: YAML Database
+## Mostly complete: YAML Database
 ### Basic Databasing tools
 Script capable on inputting into a database and retrieving.
 Should have:
-- [ ] Basic Input with fields
-- [ ] Basic Query
-- [ ] Deletion
-- [ ] Capable of Unicode Parsing.
+- [x] Basic Input with fields
+- [x] Basic Query
+- [x] Deletion
+- [x] Capable of Unicode Parsing.
+- [ ] Editing

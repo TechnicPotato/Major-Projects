@@ -50,7 +50,7 @@ def search_db(data, command):
     if (command == "NAME"):
         try:
             found_data = data[target]
-            print("Name:\t{name}".format(name=i))
+            print("Name:\t{name}".format(name=target))
             print_yaml(found_data)
         except KeyError:
             print("Cannot find appropriate name")
