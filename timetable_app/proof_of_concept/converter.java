@@ -6,21 +6,26 @@ public class converter {
     public static void main(String[] args){
         converter test = new converter();
         // <--- I/O --->
-        test.RetrieveTimetable("http://www.timetable.usyd.edu.au/personaltimetable/timetable/calendar/490481932/xp92hv2doHgqJh9LEudtX9sa8uNUcZBUuwtE72XYzp9/timetable.ics");
+        String output = test.RetrieveTimetable("http://www.timetable.usyd.edu.au/personaltimetable/timetable/calendar/490481932/xp92hv2doHgqJh9LEudtX9sa8uNUcZBUuwtE72XYzp9/timetable.ics");
+        System.out.println(output);
     }
     public String RetrieveTimetable(String url) {
         try {
             URL timetableurl = new URL(url);
             Scanner s = new Scanner(timetableurl.openStream(), "UTF-8");
+            StringBuilder outputstr = new StringBuilder();
             while (s.hasNext()){
-                System.out.println(s.next());
+                outputstr.append(s.next());
             }
+            // Prevent a memory leak
+            s.close();
+            return outputstr.toString();
         }
         catch (Exception e) {
+            // Calling a failure
             e.printStackTrace();
             return null;
         }
-        return "Test";
     }
 }
     // Go to website and retrieve data
