@@ -16,7 +16,7 @@ public class converter {
             URL timetableurl = new URL(url);
             Scanner s = new Scanner(timetableurl.openStream(), "UTF-8");
             StringBuilder outputstr = new StringBuilder();
-            while (s.hasNext()){
+            while (s.hasNextLine()){
                 outputstr.append(s.next() + "\n");
             }
             // Prevent a memory leak
