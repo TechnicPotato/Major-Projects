@@ -11,4 +11,13 @@ public class event {
         this.uid = uid;
         this.location = location;
     }
+
+    private void convertdt(String dtstring) {
+        // Generates a time event from a DTString from an ical file
+        String[] dtevent = dtstring.split(";");
+        if(dtevent[1].contains("Sydney")){
+            // Add some value to match the correct date and time.
+        }
+
+    }
 }
