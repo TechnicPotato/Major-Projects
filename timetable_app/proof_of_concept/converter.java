@@ -15,7 +15,7 @@ public class converter {
             Scanner s = new Scanner(timetableurl.openStream(), "UTF-8");
             StringBuilder outputstr = new StringBuilder();
             while (s.hasNext()){
-                outputstr.append(s.next());
+                outputstr.append(s.next() + "\n");
             }
             // Prevent a memory leak
             s.close();
