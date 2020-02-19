@@ -9,7 +9,9 @@ public class converter {
         String output = test.RetrieveTimetable("http://www.timetable.usyd.edu.au/personaltimetable/timetable/calendar/490481932/xp92hv2doHgqJh9LEudtX9sa8uNUcZBUuwtE72XYzp9/timetable.ics");
         System.out.println(output);
     }
+    // TODO: Add to seperate methods file
     public String RetrieveTimetable(String url) {
+        // Attempts to go to a website and retrieve the data there. Returns as a string form, assumes UTF-8 formatting
         try {
             URL timetableurl = new URL(url);
             Scanner s = new Scanner(timetableurl.openStream(), "UTF-8");
@@ -28,7 +30,6 @@ public class converter {
         }
     }
 }
-    // Go to website and retrieve data
     // <--- Event Parsing -->
     // From retrieved data, sort into events
     // Capability to retrieve events when needed
