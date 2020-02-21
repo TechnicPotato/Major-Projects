@@ -5,7 +5,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class event {
+public class Event {
     //TODO: Make private and add getters and setters
     String name;
     ZonedDateTime start;
@@ -13,7 +13,7 @@ public class event {
     String uid;
     String location;
 
-    public event(String name, String dtstart, String dtend, String uid, String location) {
+    public Event(String name, String dtstart, String dtend, String uid, String location) {
         this.name = name;
         this.start = convertdt(dtstart);
         this.end = convertdt(dtend);
