@@ -4,11 +4,13 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class event {
+    //TODO: Make private and add getters and setters
     String name;
     ZonedDateTime start;
     ZonedDateTime end;
     String uid;
     String location;
+
     public event(String name, String dtstart, String dtend, String uid, String location) {
         this.name = name;
         this.start = convertdt(dtstart);
