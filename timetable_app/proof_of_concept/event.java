@@ -5,14 +5,14 @@ import java.time.format.DateTimeFormatter;
 
 public class event {
     String name;
-    String dtstart;
-    String dtend;
+    ZonedDateTime start;
+    ZonedDateTime end;
     String uid;
     String location;
     public event(String name, String dtstart, String dtend, String uid, String location) {
         this.name = name;
-        this.dtstart = dtstart;
-        this.dtend = dtend;
+        this.start = convertdt(dtstart);
+        this.end = convertdt(dtend);
         this.uid = uid;
         this.location = location;
     }
@@ -29,7 +29,7 @@ public class event {
      * @param dtstring - A date/time string in standard ICAL format to be formatted as a time object
      * @return  A formatted date/time string as a ZonedDateTime
      */
-    private ZonedDateTime convertdt(String dtstring) {
+    private static ZonedDateTime convertdt(String dtstring) {
         String[] dtevent = dtstring.split(";");
         // Perform conversion of local time to something easier formatted.
         String localtime = dtevent[2].replace("VALUE=DATE-TIME:", "").replace("T", " ");
