@@ -1,6 +1,9 @@
+package timetableapp;
+
 // Import needed modules
 import java.net.URL;
 import java.util.Scanner;
+import timetableapp.event;
 
 public class converter {
     public static void main(String[] args){
@@ -29,6 +32,8 @@ public class converter {
             return null;
         }
     }
+
+    // private event GenerateEvent
 }
     // <--- Event Parsing -->
     // From retrieved data, sort into events
