@@ -40,6 +40,7 @@ public class Converter {
      * @param url - A url (in non-secured http form) in which an ical formatted file is to be retrieved.
      * @return A formatted string of the contents of the ical file.
      * @throws Exception if the file is not valid.
+     * @see Converter#CheckCalendarValidity(String)
      */
     public String RetrieveTimetable(String url) throws Exception{
         // Attempts to go to a website and retrieve the data there. Returns as a string form, assumes UTF-8 formatting
