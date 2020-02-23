@@ -131,7 +131,13 @@ public class Converter {
         return timeline;
     }
 
-
+    /**
+     * From an ICAL formatted string, generate an Event object for use in a timeline.
+     * 
+     * @param eventtext - ICAL formatted string to generate an event with. Must start with <i>BEGIN:VEVENT</i> and end with <i>END:VEVENT</i>
+     * @return Object of Event class
+     * @throws Exception - If Event lacks the necessary fields to be generated.
+     */
     private Event GenerateEvent(String eventtext) throws Exception{
         // Remove arbitrary start and end
         // TODO: Possibly deal with this before calling the function
