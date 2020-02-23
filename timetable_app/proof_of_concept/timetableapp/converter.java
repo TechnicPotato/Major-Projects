@@ -32,7 +32,15 @@ public class Converter {
         //     e.printStackTrace();
         // }
     }
+
     // TODO: Add to seperate methods file
+    /**
+     * Retrieves an ical formatted timetable from a url and returns the string formatted variant.
+     * 
+     * @param url - A url (in non-secured http form) in which an ical formatted file is to be retrieved.
+     * @return A formatted string of the contents of the ical file.
+     * @throws Exception if the file is not valid.
+     */
     public String RetrieveTimetable(String url) throws Exception{
         // Attempts to go to a website and retrieve the data there. Returns as a string form, assumes UTF-8 formatting
         try {
@@ -71,7 +79,7 @@ public class Converter {
      * @see Converter#RetrieveTimetable(String)
      */
     private static boolean CheckCalendarValidity(String timetablestring) {
-        if (timetablestring.startsWith("BEGIN:VCALENDAR") && timetablestring.endsWith("END:VCALENDAR")) {
+        if (timetablestring.startsWith("BEGIN:VCALENDAR") && timetablestring.endsWith("END:VCALENDAR\n")) {
             return true;
         }
         return false;
