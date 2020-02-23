@@ -45,6 +45,22 @@ public class Converter {
         }
     }
 
+    //TODO: Utilise the inbuilt refresh in an ical format and use that to refresh the calender.
+
+    /**
+     * Returns a boolean to whether the ical calender retrieved is complete.
+     * Performs a check if the calender starts with and ends with VCALENDAR
+     * 
+     * @param timetablestring - An ical file that has been converted to a string format.
+     * @return A boolean if the timetablestring matches the preferred format.
+     * @see Converter#RetrieveTimetable(String)
+     */
+    private boolean CheckCalenderValidity(String timetablestring) {
+        if (timetablestring.startsWith("BEGIN:VCALENDAR") && timetablestring.endsWith("END:VCALENDAR")) {
+            return true;
+        }
+        return false;
+    }
     private Event GenerateEvent(String eventtext) throws Exception{
         // Remove arbitrary start and end
         // TODO: Possibly deal with this before calling the function
