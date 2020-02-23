@@ -2,6 +2,7 @@ package timetableapp;
 
 // Import needed modules
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Scanner;
 import timetableapp.Event;
 
@@ -13,6 +14,7 @@ public class Converter {
         // Perform basic checking
         try {
             output = test.RetrieveTimetable("http://www.timetable.usyd.edu.au/personaltimetable/timetable/calendar/490481932/xp92hv2doHgqJh9LEudtX9sa8uNUcZBUuwtE72XYzp9/timetable.ics");
+            System.out.println(test.GenerateTimeline(output));
         } 
         catch (Exception e) {
             e.printStackTrace();
@@ -85,6 +87,51 @@ public class Converter {
         }
         return false;
     }
+    
+    /**
+     * From an ical formatted string, generate an ArrayList of Events for general use.
+     * @param timetablestring - String of an ICAL formatted file
+     * @return Timeline of the Events from the ical string, formatted in an ArrayList
+     * @see Converter#RetrieveTimetable(String)
+     * @see Converter#GenerateEvent(String)
+     * @see Event
+     */
+    private ArrayList<Event> GenerateTimeline(String timetablestring) {
+        Scanner s = new Scanner(timetablestring);
+        // Generate strings to avoid regenerating them later.
+        String eventgenerate = "";
+        String currentline = new String();
+        boolean generateevent = false;
+        ArrayList<Event> timeline = new ArrayList<Event>();
+        while (s.hasNextLine()) {
+            currentline = s.nextLine();
+            // Check for a new event
+            if (currentline.equals("BEGIN:VEVENT")) {
+                generateevent = true;
+            }
+            // If an event has been found, copy into a buffer for event generation
+            if (generateevent) {
+                eventgenerate = eventgenerate.concat(currentline + "\n");
+            }
+            // After, perform a check if END has been found, and if so, generate an event
+            if (currentline.equals("END:VEVENT")) {
+                generateevent = false;
+                // Use generateevent to create Event from String
+                try {
+                    timeline.add(GenerateEvent(eventgenerate));
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+                }
+                // Clean the string for a new event
+                eventgenerate = "";
+            }
+        }
+        return timeline;
+    }
+
+
     private Event GenerateEvent(String eventtext) throws Exception{
         // Remove arbitrary start and end
         // TODO: Possibly deal with this before calling the function
