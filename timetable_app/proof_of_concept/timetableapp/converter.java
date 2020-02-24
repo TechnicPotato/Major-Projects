@@ -17,7 +17,7 @@ public class Converter {
         try {
             output = test.RetrieveTimetable("http://www.timetable.usyd.edu.au/personaltimetable/timetable/calendar/490481932/xp92hv2doHgqJh9LEudtX9sa8uNUcZBUuwtE72XYzp9/timetable.ics");
             for (Event i: test.GenerateTimeline(output)) {
-                System.out.print(i.name + " ");
+                System.out.println(i.name);
             }
         } 
         catch (Exception e) {
@@ -133,7 +133,7 @@ public class Converter {
             }
         }
         // Sort the timeline via the time
-        // Collections.sort(timeline, );
+        Collections.sort(timeline, new CompareTime());
         return timeline;
     }
 
@@ -186,7 +186,7 @@ public class Converter {
 
 class CompareTime implements Comparator<Event> {
     public int compare(Event a, Event b) {
-        return 1;
+        return a.start.compareTo(b.end);
     }
 }
     // <--- Event Parsing -->
