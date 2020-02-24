@@ -2,6 +2,7 @@ package timetableapp;
 
 // Import needed modules
 import java.net.URL;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -16,9 +17,11 @@ public class Converter {
         // Perform basic checking
         try {
             output = test.RetrieveTimetable("http://www.timetable.usyd.edu.au/personaltimetable/timetable/calendar/490481932/xp92hv2doHgqJh9LEudtX9sa8uNUcZBUuwtE72XYzp9/timetable.ics");
-            for (Event i: test.GenerateTimeline(output)) {
+            ArrayList<Event> Eventlist = test.GenerateTimeline(output);
+            for (Event i: Eventlist) {
                 System.out.println(i.name);
             }
+            test.ObtainCurrentEvent(Eventlist);
         } 
         catch (Exception e) {
             e.printStackTrace();
@@ -185,16 +188,36 @@ public class Converter {
         Event newevent = new Event(name, dtstart, dtend, uid, location);
         return newevent;        
     }
+
+    /**
+     * Performs a check based on current system time if an event is taking place
+     * @param Eventlist - Sorted (time-based) list of Events to be parsed
+     * @return - Event object if currently during the time of an Event in the list, otherwise null.
+     */
+    private Event ObtainCurrentEvent(ArrayList<Event> Eventlist){
+        Event output = null;
+        ZonedDateTime CurrentTime = ZonedDateTime.now();
+        // Look through the list of events and see if an event is currently on
+        // Since sorted, for performance optimisation don't look at events past 1 in the future.
+        for (Event e: Eventlist) {
+            if (CurrentTime.isBefore(e.start)) {
+                break;
+            }
+            else if (CurrentTime.isBefore(e.end) && CurrentTime.isAfter(e.start)) {
+                output = e;
+            }
+        }
+        return output;
+    }
 }
 
 class CompareTime implements Comparator<Event> {
     public int compare(Event a, Event b) {
         return a.start.compareTo(b.end);
     }
+    
 }
-    // <--- Event Parsing -->
-    // From retrieved data, sort into events
-    // Capability to retrieve events when needed
+ 
     // <--- Text storage --->
     // Store data as a file
     // <--- Possibly store a current event --->
