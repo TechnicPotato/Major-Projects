@@ -18,12 +18,14 @@ public class Converter {
         try {
             output = test.RetrieveTimetable("http://www.timetable.usyd.edu.au/personaltimetable/timetable/calendar/490481932/xp92hv2doHgqJh9LEudtX9sa8uNUcZBUuwtE72XYzp9/timetable.ics");
             ArrayList<Event> Eventlist = test.GenerateTimeline(output);
-            for (Event i: Eventlist) {
-                System.out.println(i.name);
-            }
+            // for (Event i: Eventlist) {
+            //     System.out.println(i.name);
+            // }
             System.out.println(test.ObtainCurrentEvent(Eventlist));
-            System.out.println(test.ObtainNextEvent(Eventlist, Eventlist.get(0)).name);
-            System.out.println(test.ObtainPastEvent(Eventlist, Eventlist.get(1)).name);
+            Event nextEvent = test.ObtainClosestEvent(Eventlist);
+            System.out.println(nextEvent.name);
+            System.out.println(test.ObtainNextEvent(Eventlist, nextEvent).name);
+            System.out.println(test.ObtainPastEvent(Eventlist, nextEvent));
         } 
         catch (Exception e) {
             e.printStackTrace();
@@ -223,7 +225,7 @@ public class Converter {
         try {
             return Eventlist.get((Eventlist.indexOf(currentEvent) + 1));
         }
-        catch (ArrayIndexOutOfBoundsException e) {
+        catch (IndexOutOfBoundsException e) {
             return null;
         }
     }
@@ -239,7 +241,7 @@ public class Converter {
         try {
             return Eventlist.get((Eventlist.indexOf(currentEvent) - 1));
         }
-        catch (ArrayIndexOutOfBoundsException e) {
+        catch (IndexOutOfBoundsException e) {
             return null;
         }
     }
