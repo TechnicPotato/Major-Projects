@@ -3,6 +3,8 @@ package timetableapp;
 // Import needed modules
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 import timetableapp.Event;
 
@@ -14,7 +16,9 @@ public class Converter {
         // Perform basic checking
         try {
             output = test.RetrieveTimetable("http://www.timetable.usyd.edu.au/personaltimetable/timetable/calendar/490481932/xp92hv2doHgqJh9LEudtX9sa8uNUcZBUuwtE72XYzp9/timetable.ics");
-            System.out.println(test.GenerateTimeline(output));
+            for (Event i: test.GenerateTimeline(output)) {
+                System.out.print(i.name + " ");
+            }
         } 
         catch (Exception e) {
             e.printStackTrace();
@@ -128,6 +132,8 @@ public class Converter {
                 eventgenerate = "";
             }
         }
+        // Sort the timeline via the time
+        // Collections.sort(timeline, );
         return timeline;
     }
 
@@ -136,7 +142,7 @@ public class Converter {
      * 
      * @param eventtext - ICAL formatted string to generate an event with. Must start with <i>BEGIN:VEVENT</i> and end with <i>END:VEVENT</i>
      * @return Object of Event class
-     * @throws Exception - If Event lacks the necessary fields to be generated.
+     * @throws Exception - If Event lacks the necessary fields to be generated. 
      */
     private Event GenerateEvent(String eventtext) throws Exception{
         // Remove arbitrary start and end
@@ -153,10 +159,10 @@ public class Converter {
         // Search inside the fields and look for each field
         for (String i: fields) {
             if (i.startsWith("SUMMARY:")) {
-                name = i;
+                name = i.replace("SUMMARY:", "");
             }
             else if (i.startsWith("LOCATION:")) {
-                location = i;
+                location = i.replace("LOCATION:", "");
             }
             else if (i.startsWith("DTSTART")) {
                 dtstart = i;
@@ -165,7 +171,7 @@ public class Converter {
                 dtend = i;
             }
             else if (i.startsWith("UID:")) {
-                uid = i;
+                uid = i.replace("UID:", "");
             }
         }
 
@@ -175,6 +181,12 @@ public class Converter {
         }
         Event newevent = new Event(name, dtstart, dtend, uid, location);
         return newevent;        
+    }
+}
+
+class CompareTime implements Comparator<Event> {
+    public int compare(Event a, Event b) {
+        return 1;
     }
 }
     // <--- Event Parsing -->
