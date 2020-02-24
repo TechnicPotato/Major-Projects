@@ -21,7 +21,9 @@ public class Converter {
             for (Event i: Eventlist) {
                 System.out.println(i.name);
             }
-            test.ObtainCurrentEvent(Eventlist);
+            System.out.println(test.ObtainCurrentEvent(Eventlist));
+            System.out.println(test.ObtainNextEvent(Eventlist, Eventlist.get(0)).name);
+            System.out.println(test.ObtainPastEvent(Eventlist, Eventlist.get(1)).name);
         } 
         catch (Exception e) {
             e.printStackTrace();
@@ -211,22 +213,51 @@ public class Converter {
     }
 
     /**
-     * Performs a check on current system time to see which event will be in the future. Returns an appropriate Event object.
+     * Obtains the next event object past the current one.
      * @param Eventlist - Sorted (time-based list of Events to be parsed)
-     * @return - Event object if there exists one in the future, otherwise null.
+     * @param currentEvent - The event the system is currently looking at,
+     * @return - Event object 1 past the currentEvent, otherwise null if none exists
      */
-    private Event ObtainNextEvent(ArrayList<Event> Eventlist) {
-        Event output = null;
+    private Event ObtainNextEvent(ArrayList<Event> Eventlist, Event currentEvent) {
+        // Look for the next indexed number
+        try {
+            return Eventlist.get((Eventlist.indexOf(currentEvent) + 1));
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Obtains the next event object 1 previous to the current one.
+     * @param Eventlist - Sorted (time-based list of Events to be parsed)
+     * @param currentEvent - The event the system is currently looking at,
+     * @return - Event object 1 previous to the currentEvent, otherwise null if none exists
+     */
+    private Event ObtainPastEvent(ArrayList<Event> Eventlist, Event currentEvent) {
+        // Look for the previous indexed number
+        try {
+            return Eventlist.get((Eventlist.indexOf(currentEvent) - 1));
+        }
+        catch (ArrayIndexOutOfBoundsException e) {
+            return null;
+        }
+    }
+
+    /**
+     * Performs a search based on current time on what the next event will be.
+     * @param Eventlist - Sorted (time-based) list of Events to be parsed
+     * @return - Event object of the next event based on current time.
+     */
+    private Event ObtainClosestEvent(ArrayList<Event> Eventlist) {
         ZonedDateTime CurrentTime = ZonedDateTime.now();
-        // Look through the list of events and look for the next event.
-        // Since sorted, for performance optimisation don't look at events past 1 in the future.
+        // Performs a quick search for the next event.
         for (Event e: Eventlist) {
             if (CurrentTime.isBefore(e.start)) {
-                output = e;
-                break;
+                return e;
             }
         }
-        return output;
+        return null;
     }
 }
 
