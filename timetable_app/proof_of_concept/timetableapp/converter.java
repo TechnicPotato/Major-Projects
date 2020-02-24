@@ -190,7 +190,7 @@ public class Converter {
     }
 
     /**
-     * Performs a check based on current system time if an event is taking place
+     * Performs a check based on current system time if an event is taking place. Returns appropriate Event object.
      * @param Eventlist - Sorted (time-based) list of Events to be parsed
      * @return - Event object if currently during the time of an Event in the list, otherwise null.
      */
@@ -205,6 +205,25 @@ public class Converter {
             }
             else if (CurrentTime.isBefore(e.end) && CurrentTime.isAfter(e.start)) {
                 output = e;
+            }
+        }
+        return output;
+    }
+
+    /**
+     * Performs a check on current system time to see which event will be in the future. Returns an appropriate Event object.
+     * @param Eventlist - Sorted (time-based list of Events to be parsed)
+     * @return - Event object if there exists one in the future, otherwise null.
+     */
+    private Event ObtainNextEvent(ArrayList<Event> Eventlist) {
+        Event output = null;
+        ZonedDateTime CurrentTime = ZonedDateTime.now();
+        // Look through the list of events and look for the next event.
+        // Since sorted, for performance optimisation don't look at events past 1 in the future.
+        for (Event e: Eventlist) {
+            if (CurrentTime.isBefore(e.start)) {
+                output = e;
+                break;
             }
         }
         return output;
