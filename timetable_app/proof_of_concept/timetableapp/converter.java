@@ -24,7 +24,7 @@ public class Converter {
             e.printStackTrace();
             return;
         }
-        String[] bar = output.split("\n");
+        // String[] bar = output.split("\n");
         // String teststring = bar[30]+"\n"+bar[31]+"\n"+bar[32]+"\n"+bar[33]+"\n"+bar[34]+"\n"+bar[35]+"\n"+bar[36];
         // try {
         //     Event foo = test.GenerateEvent(teststring);
@@ -125,6 +125,7 @@ public class Converter {
                     timeline.add(GenerateEvent(eventgenerate));
                 }
                 catch (Exception e) {
+                    s.close();
                     e.printStackTrace();
                     return null;
                 }
@@ -132,6 +133,8 @@ public class Converter {
                 eventgenerate = "";
             }
         }
+        // Prevent resource leak
+        s.close();
         // Sort the timeline via the time
         Collections.sort(timeline, new CompareTime());
         return timeline;
