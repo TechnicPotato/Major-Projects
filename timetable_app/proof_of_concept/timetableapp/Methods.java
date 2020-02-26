@@ -9,9 +9,9 @@ import java.util.Comparator;
 import java.util.Scanner;
 import timetableapp.Event;
 
-public class Converter {
+public class Methods {
     public static void main(String[] args){
-        Converter test = new Converter();
+        Methods test = new Methods();
         String output;
         // <--- I/O --->
         // Perform basic checking
@@ -23,8 +23,8 @@ public class Converter {
             // }
             System.out.println(test.ObtainCurrentEvent(Eventlist));
             Event nextEvent = test.ObtainClosestEvent(Eventlist);
-            System.out.println(nextEvent.name);
-            System.out.println(test.ObtainNextEvent(Eventlist, nextEvent).name);
+            System.out.println(nextEvent.getName());
+            System.out.println(test.ObtainNextEvent(Eventlist, nextEvent).getName());
             System.out.println(test.ObtainPastEvent(Eventlist, nextEvent));
         } 
         catch (Exception e) {
@@ -204,10 +204,10 @@ public class Converter {
         // Look through the list of events and see if an event is currently on
         // Since sorted, for performance optimisation don't look at events past 1 in the future.
         for (Event e: Eventlist) {
-            if (CurrentTime.isBefore(e.start)) {
+            if (CurrentTime.isBefore(e.getStart())) {
                 break;
             }
-            else if (CurrentTime.isBefore(e.end) && CurrentTime.isAfter(e.start)) {
+            else if (CurrentTime.isBefore(e.getEnd()) && CurrentTime.isAfter(e.getStart())) {
                 output = e;
             }
         }
@@ -255,7 +255,7 @@ public class Converter {
         ZonedDateTime CurrentTime = ZonedDateTime.now();
         // Performs a quick search for the next event.
         for (Event e: Eventlist) {
-            if (CurrentTime.isBefore(e.start)) {
+            if (CurrentTime.isBefore(e.getStart())) {
                 return e;
             }
         }
@@ -265,7 +265,7 @@ public class Converter {
 
 class CompareTime implements Comparator<Event> {
     public int compare(Event a, Event b) {
-        return a.start.compareTo(b.end);
+        return a.getStart().compareTo(b.getEnd());
     }
     
 }

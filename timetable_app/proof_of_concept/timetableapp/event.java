@@ -6,12 +6,11 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Event {
-    //TODO: Make private and add getters and setters
-    String name;
-    ZonedDateTime start;
-    ZonedDateTime end;
-    String uid;
-    String location;
+    private String name;
+    private ZonedDateTime start;
+    private ZonedDateTime end;
+    private String uid;
+    private String location;
 
     public Event(String name, String dtstart, String dtend, String uid, String location) {
         this.name = name;
@@ -19,6 +18,41 @@ public class Event {
         this.end = convertdt(dtend);
         this.uid = uid;
         this.location = location;
+    }
+
+    /**
+     * @return name of the event
+     */
+    public String getName(){
+        return name;
+    }
+
+    /**
+     * @return start of the event in a ZonedDateTime format
+     */
+    public ZonedDateTime getStart() {
+        return start;
+    }
+
+    /**
+     * @return end of the event in a ZonedDateTime format
+     */
+    public ZonedDateTime getEnd() {
+        return end;
+    }
+
+    /**
+     * @return uid of the event in a String format
+     */
+    public String getUID() {
+        return uid;
+    }
+
+    /**
+     * @return location of the event in a String format
+     */
+    public String getLocation() {
+        return location;
     }
 
     /**
